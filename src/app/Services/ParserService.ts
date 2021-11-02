@@ -1,7 +1,6 @@
 import LoggerService from "sosise-core/build/Services/Logger/LoggerService";
 import LocalStorageRepositoryInterface from "../Repositories/LocalStorageRepositoryInterface";
 import puppeteer from "puppeteer";
-import EventEmitter from "events";
 export default class ParserService {
 
     /**
@@ -22,56 +21,20 @@ export default class ParserService {
     constructor(localStorageRepository: LocalStorageRepositoryInterface, loggerService: LoggerService) {
         this.localStorageRepository = localStorageRepository;
         this.loggerService = loggerService;
-        const emitter = new EventEmitter();
-        emitter.setMaxListeners(100);
     }
 
     public async parse() {
         this.loggerService.info('start');
         const config = await this.localStorageRepository.getConfig();
         
-        for (const chunk of this.arrayChunk(config)) {
-            const contentPromise = new Array();
-
-            for(const item of chunk as []) {
-                
-                contentPromise.push(this.getContent(item));
-            }
-
-            const getContentPromiseResult = await Promise.allSettled(contentPromise);
-
-            const createOrUpdateContentPromise = new Array();
-            for(const [key, response] of Object.entries(getContentPromiseResult)) {
-                
-                if(response.status !== 'fulfilled'){
-                    this.loggerService.critical("Can't get content", response.reason);
-                    continue;
-                }
-
-                createOrUpdateContentPromise.push(this.localStorageRepository.createOrUpdateContent(response.value))
-            }
-
-            const createOrUpdateContentPromiseResult = await Promise.allSettled(createOrUpdateContentPromise);
-            
-            for(const [key, response] of Object.entries(createOrUpdateContentPromiseResult)) {
-                if(response.status !== 'fulfilled') {
-                    this.loggerService.critical("Can't update", response.reason);
-                    continue;
-                }
-
-            }
+        for (const item of config) {
+            const content = await this.getContent(item);
+            await this.localStorageRepository.createOrUpdateContent(content);
         }
+        
     }
 
-    private arrayChunk(inputArray: [], chunkSize: number = 20) {
-        const res = [];
-        for (let i = 0; i < inputArray.length; i += chunkSize) {
-            const chunk = inputArray.slice(i, i + chunkSize);
-            res.push(chunk as never);
-        }
-        return res;
-    }
-
+  
     /**
      * Get content
      */
