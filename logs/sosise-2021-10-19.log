@@ -1,0 +1,74 @@
+2021-10-19 14:43:32 CRIT  Error exception occurred {
+  message: 'connect ECONNREFUSED 127.0.0.1:3306',
+  data: {
+    stack: [
+      'Error: connect ECONNREFUSED 127.0.0.1:3306',
+      'at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1137:16)',
+      '--------------------',
+      'at Protocol._enqueue (/var/www/app/node_modules/mysql/lib/protocol/Protocol.js:144:48)',
+      'at Protocol.handshake (/var/www/app/node_modules/mysql/lib/protocol/Protocol.js:51:23)',
+      'at Connection.connect (/var/www/app/node_modules/mysql/lib/Connection.js:116:18)',
+      'at /var/www/app/node_modules/knex/lib/dialects/mysql/index.js:56:18',
+      'at new Promise (<anonymous>)',
+      'at Client_MySQL.acquireRawConnection (/var/www/app/node_modules/knex/lib/dialects/mysql/index.js:51:12)',
+      'at create (/var/www/app/node_modules/knex/lib/client.js:237:39)'
+    ]
+  }
+}
+2021-10-19 14:43:50 INFO  start 
+2021-10-19 14:43:50 CRIT  Error exception occurred {
+  message: 'connect ECONNREFUSED 127.0.0.1:3306',
+  data: {
+    stack: [
+      'Error: connect ECONNREFUSED 127.0.0.1:3306',
+      'at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1137:16)',
+      '--------------------',
+      'at Protocol._enqueue (/var/www/app/node_modules/mysql/lib/protocol/Protocol.js:144:48)',
+      'at Protocol.handshake (/var/www/app/node_modules/mysql/lib/protocol/Protocol.js:51:23)',
+      'at Connection.connect (/var/www/app/node_modules/mysql/lib/Connection.js:116:18)',
+      'at /var/www/app/node_modules/knex/lib/dialects/mysql/index.js:56:18',
+      'at new Promise (<anonymous>)',
+      'at Client_MySQL.acquireRawConnection (/var/www/app/node_modules/knex/lib/dialects/mysql/index.js:51:12)',
+      'at create (/var/www/app/node_modules/knex/lib/client.js:237:39)',
+      'at processTicksAndRejections (node:internal/process/task_queues:94:5)'
+    ]
+  }
+}
+2021-10-19 14:44:01 INFO  start 
+2021-10-19 14:44:01 CRIT  Error exception occurred {
+  message: 'connect ECONNREFUSED 127.0.0.1:3306',
+  data: {
+    stack: [
+      'Error: connect ECONNREFUSED 127.0.0.1:3306',
+      'at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1137:16)',
+      '--------------------',
+      'at Protocol._enqueue (/var/www/app/node_modules/mysql/lib/protocol/Protocol.js:144:48)',
+      'at Protocol.handshake (/var/www/app/node_modules/mysql/lib/protocol/Protocol.js:51:23)',
+      'at Connection.connect (/var/www/app/node_modules/mysql/lib/Connection.js:116:18)',
+      'at /var/www/app/node_modules/knex/lib/dialects/mysql/index.js:56:18',
+      'at new Promise (<anonymous>)',
+      'at Client_MySQL.acquireRawConnection (/var/www/app/node_modules/knex/lib/dialects/mysql/index.js:51:12)',
+      'at create (/var/www/app/node_modules/knex/lib/client.js:237:39)',
+      'at processTicksAndRejections (node:internal/process/task_queues:94:5)'
+    ]
+  }
+}
+2021-10-19 14:44:43 INFO  start 
+2021-10-19 14:44:44 CRIT  Error exception occurred {
+  message: 'connect ECONNREFUSED 127.0.0.1:3306',
+  data: {
+    stack: [
+      'Error: connect ECONNREFUSED 127.0.0.1:3306',
+      'at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1137:16)',
+      '--------------------',
+      'at Protocol._enqueue (/var/www/app/node_modules/mysql/lib/protocol/Protocol.js:144:48)',
+      'at Protocol.handshake (/var/www/app/node_modules/mysql/lib/protocol/Protocol.js:51:23)',
+      'at Connection.connect (/var/www/app/node_modules/mysql/lib/Connection.js:116:18)',
+      'at /var/www/app/node_modules/knex/lib/dialects/mysql/index.js:56:18',
+      'at new Promise (<anonymous>)',
+      'at Client_MySQL.acquireRawConnection (/var/www/app/node_modules/knex/lib/dialects/mysql/index.js:51:12)',
+      'at create (/var/www/app/node_modules/knex/lib/client.js:237:39)',
+      'at processTicksAndRejections (node:internal/process/task_queues:94:5)'
+    ]
+  }
+}
