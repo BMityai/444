@@ -62,14 +62,19 @@ export default class ParserService {
             await page.waitFor(4000)
 
             // this.loggerService.info(await page.content())
-            var content = await page.$$eval(item.selector, (el): string => {
+            let content = await page.$$eval(item.selector, (el): string => {
                if(el.length > 1) {
                 return el[1].textContent as string
                }
                return el[0].textContent as string;
 
             });
-
+            if(content.includes('..')) {
+                content = await page.$$eval(`${item.selector} span`, (el): string => {
+                    return el[0].getAttribute('title') as string
+                });
+            }
+            
             if (content) content = content.substr(1);
 
             if (content) content = content.replace(',', '');
