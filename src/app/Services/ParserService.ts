@@ -1,6 +1,7 @@
 import LoggerService from "sosise-core/build/Services/Logger/LoggerService";
 import LocalStorageRepositoryInterface from "../Repositories/LocalStorageRepositoryInterface";
 import puppeteer from "puppeteer";
+import Helper from "sosise-core/build/Helper/Helper";
 export default class ParserService {
 
     /**
@@ -28,8 +29,12 @@ export default class ParserService {
         const config = await this.localStorageRepository.getConfig();
         
         for (const item of config) {
-            const content = await this.getContent(item);
-            await this.localStorageRepository.createOrUpdateContent(content);
+            try {
+                const content = await this.getContent(item);
+                await this.localStorageRepository.createOrUpdateContent(content);
+            } catch(e) {
+                this.loggerService.critical(e);
+            }
         }
         
     }
@@ -57,19 +62,25 @@ export default class ParserService {
             await page.waitFor(4000)
 
             // this.loggerService.info(await page.content())
-            var content = await page.$eval(item.selector, el => el.textContent);
+            var content = await page.$$eval(item.selector, (el): string => {
+               if(el.length > 1) {
+                return el[1].textContent as string
+               }
+               return el[0].textContent as string;
+
+            });
+
             if (content) content = content.substr(1);
 
             if (content) content = content.replace(',', '');
             if (content) content = content.replace('.', ',');
+            if (content) content = content.replace('$', '');
+
             browser.close();
             return { id: item.id, content: content };
-        } catch {
+        } catch(e) {
             browser.close();
         }
-
-
-
     }
 
     /**

@@ -27,6 +27,10 @@ export default class LocalStorageRepository implements LocalStorageRepositoryInt
      */
     public async createOrUpdateContent(content): Promise<any> {
 
+        if(content.content == 0) {
+            return
+        }
+
         const currentContent = await this.getContentByConfigId(content.id);
         if (!currentContent.length) {
             await this.createContent(content);
